@@ -15,27 +15,41 @@ class Live extends Component {
         travel: {},
         uv: {},
         isReady: false,
-        location: null
+        location: "江苏省南京市"
     }
 
     constructor() {
         super();
-        //先更新用户当前位置
-        getLocation().then(res => {
-            var cname = JSON.parse(res.data.substring(19, res.data.length - 1)).cname;
-            console.log(cname)
-            this.props.parent.showLocation(cname)
-            //再给setState设置一个回调，更新天气
-            this.setState({location: cname}, () => {
-                var {location} = this.state;
-                getLive(location).then(res => {
-                    //再给setState设置一个回调，更新生活指数
-                    this.setState({live: res.data.results[0].now}, () => {
-                        getSuggestion(location).then(res => {
-                            console.log(res.data.results[0].suggestion)
-                            this.setState({...res.data.results[0].suggestion, isReady: true})
-                        })
-                    })
+        //由于getLocation Api寄了，只能把地址默认设为南京了
+
+        // //先更新用户当前位置
+        // getLocation().then(res => {
+        //     var cname = JSON.parse(res.data.substring(19, res.data.length - 1)).cname;
+        //     console.log(cname)
+        //     this.props.parent.showLocation(cname)
+        //     //再给setState设置一个回调，更新天气
+        //     this.setState({location: cname}, () => {
+        //         var {location} = this.state;
+        //         getLive(location).then(res => {
+        //             //再给setState设置一个回调，更新生活指数
+        //             this.setState({live: res.data.results[0].now}, () => {
+        //                 getSuggestion(location).then(res => {
+        //                     console.log(res.data.results[0].suggestion)
+        //                     this.setState({...res.data.results[0].suggestion, isReady: true})
+        //                 })
+        //             })
+        //         })
+        //     })
+        // })
+        const {location} = this.state;
+
+        getLive(location).then(res => {
+            this.props.parent.showLocation(location)
+            //再给setState设置一个回调，更新生活指数
+            this.setState({live: res.data.results[0].now}, () => {
+                getSuggestion(location).then(res => {
+                    console.log(res.data.results[0].suggestion)
+                    this.setState({...res.data.results[0].suggestion, isReady: true})
                 })
             })
         })
