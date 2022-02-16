@@ -1,0 +1,17 @@
+.live{
+    top:75px;
+    position: relative;
+    text-align: center;
+}
+.popover{
+    position: relative;
+    text-align: center;
+}
+.temperature{
+    position: relative;
+    height: 275px;
+    margin: 0 auto;
+    color: rgb(96 , 125 , 139);
+    font-size: 250px;
+    background-color: rgba(0,0,0,0);
+}
