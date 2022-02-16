@@ -1,5 +1,5 @@
 .live{
-    top:75px;
+    top:25px;
     position: relative;
     text-align: center;
 }
@@ -9,9 +9,9 @@
 }
 .temperature{
     position: relative;
-    height: 275px;
+    height: 200px;
     margin: 0 auto;
     color: rgb(96 , 125 , 139);
-    font-size: 250px;
+    font-size: 270px;
     background-color: rgba(0,0,0,0);
 }
